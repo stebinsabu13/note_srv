@@ -1,0 +1,48 @@
+
+syntax = "proto3";
+
+package note;
+
+option go_package = "./pkg/pb";
+
+service NoteService {
+  rpc CreateNote (CreateNoteRequest) returns (CreateNoteResponse) {}
+  rpc ListAllNote (ListAllNoteRequest) returns (ListAllNoteResponse) {}
+  rpc DeleteNote (DeleteNoteRequest) returns (DeleteNoteResponse) {}
+}
+
+message CreateNoteRequest {
+  int64 uid = 1;
+  string note = 2;
+}
+
+message CreateNoteResponse {
+  int64 status = 1;
+  string error = 2;
+  uint32 id = 3;
+}
+
+message ListAllNoteRequest {
+    int64 id = 1;
+}
+
+message Notes {
+    uint32 id = 1;
+    string note = 2;
+}
+
+message ListAllNoteResponse {
+    int64 status = 1;
+    repeated Notes notes = 2;
+    string error =3;
+}
+
+message DeleteNoteRequest {
+    int64 uid = 1;
+    uint32 id =2;
+}
+
+message DeleteNoteResponse {
+    int64 status=1;
+    string error=2;
+}
